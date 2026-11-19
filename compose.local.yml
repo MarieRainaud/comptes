@@ -1,0 +1,43 @@
+name: comptes-local
+services:
+  atelier-db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: atelier
+      POSTGRES_USER: atelier
+      POSTGRES_PASSWORD: '${DB_PASSWORD}'
+    volumes:
+      - atelier-local-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U atelier -d atelier']
+      interval: 3s
+      timeout: 3s
+      retries: 30
+  comptes:
+    build: .
+    ports:
+      - '127.0.0.1:8098:8080'
+    mem_limit: 2g
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    environment:
+      KC_DB_URL: jdbc:postgresql://atelier-db:5432/atelier
+      KC_DB_USERNAME: atelier
+      KC_DB_PASSWORD: '${DB_PASSWORD}'
+      KC_HOSTNAME: http://127.0.0.1:8098
+      KC_HTTP_ENABLED: 'true'
+      JAVA_OPTS_KC_HEAP: '-Xms128m -Xmx768m'
+      KC_CACHE: local
+      KC_BOOTSTRAP_ADMIN_USERNAME: '${ADMIN_USERNAME}'
+      KC_BOOTSTRAP_ADMIN_PASSWORD: '${ADMIN_PASSWORD}'
+      KC_DB_POOL_INITIAL_SIZE: '1'
+      KC_DB_POOL_MIN_SIZE: '1'
+      KC_DB_POOL_MAX_SIZE: '5'
+      FINANCE_ORIGIN: http://127.0.0.1:8093
+      FINANCE_BACKCHANNEL_URL: http://host.docker.internal:8093/auth/backchannel-logout
+      FINANCE_CLIENT_SECRET: '${FINANCE_CLIENT_SECRET}'
+    depends_on:
+      atelier-db:
+        condition: service_healthy
+volumes:
+  atelier-local-data:

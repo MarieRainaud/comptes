@@ -1,0 +1,34 @@
+# À PARAMÉTRER PLUS TARD - SMTP, récupération du mot de passe et vérification des adresses.
+# Aucun fournisseur e-mail validé. Les fonctions e-mail restent désactivées.
+# Préparation SC uniquement. Le déploiement est lancé par Marie.
+services:
+  comptes-partage:
+    container_name: comptes
+    cpus: '0.2'
+    mem_limit: 512m
+    build: .
+    ports:
+      - '8080:8080'
+    environment:
+      KC_DB_URL: jdbc:postgresql://atelier-postgres:5432/atelier
+      KC_DB_USERNAME: atelier
+      KC_DB_PASSWORD: '${DB_PASSWORD}'
+      KC_HOSTNAME: '${AUTH_ORIGIN}'
+      KC_HTTP_ENABLED: 'true'
+      JAVA_OPTS_KC_HEAP: '-Xms64m -Xmx256m'
+      KC_CACHE: local
+      KC_PROXY_HEADERS: xforwarded
+      KC_BOOTSTRAP_ADMIN_USERNAME: '${ADMIN_USERNAME}'
+      KC_BOOTSTRAP_ADMIN_PASSWORD: '${ADMIN_PASSWORD}'
+      KC_DB_POOL_INITIAL_SIZE: '1'
+      KC_DB_POOL_MIN_SIZE: '1'
+      KC_DB_POOL_MAX_SIZE: '10'
+      FINANCE_ORIGIN: '${FINANCE_ORIGIN}'
+      FINANCE_BACKCHANNEL_URL: '${FINANCE_ORIGIN}/auth/backchannel-logout'
+      FINANCE_CLIENT_SECRET: '${FINANCE_CLIENT_SECRET}'
+    networks:
+      - default
+
+networks:
+  default:
+    external: true

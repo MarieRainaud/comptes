@@ -1,0 +1,205 @@
+@font-face {
+  font-family: Lora;
+  src: url('../fonts/lora.woff2') format('woff2');
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Sans 3';
+  src: url('../fonts/source-sans.woff2') format('woff2');
+  font-weight: 200 900;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+  --background: #22343c;
+  --surface: #2c414a;
+  --text: #f6f2ea;
+  --accent: #68dfea;
+  --border: #647e84;
+}
+
+.login-pf body {
+  background: var(--background);
+  font-family: 'Source Sans 3','Segoe UI',sans-serif;
+  color: var(--text);
+}
+
+.login-pf-page {
+  padding: 40px 20px;
+}
+
+.login-pf-page .login-pf-header {
+  margin-bottom: 28px;
+}
+
+#kc-header {
+  color: var(--accent);
+  margin: 0 0 32px;
+}
+
+#kc-header-wrapper {
+  padding: 0;
+  text-transform: none;
+  letter-spacing: normal;
+  font: 500 30px/1.4 Lora,Georgia,serif;
+}
+
+#kc-header-wrapper:before {
+  content: '';
+  display: block;
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 18px;
+  background: url('../img/logo-ninette.svg') center/contain no-repeat;
+}
+
+.login-pf-page .card-pf {
+  max-width: 550px;
+  background: var(--surface);
+  border: 0;
+  box-shadow: none;
+  padding: 30px 36px;
+  color: var(--text);
+}
+
+h1#kc-page-title {
+  font: 500 26px/1.4 Lora,Georgia,serif;
+  color: var(--accent);
+  margin: 0 0 24px;
+}
+
+a {
+  color: var(--accent);
+}
+
+a:hover,a:focus {
+  color: var(--text);
+}
+
+label,.control-label {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.pf-c-form-control,.form-control {
+  height: 46px;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  background: var(--background);
+  color: var(--text);
+  font-size: 18px;
+  box-shadow: none;
+}
+
+.pf-c-button.pf-m-control {
+  background: var(--background);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+#kc-login,.btn-primary {
+  min-height: 44px;
+  border: 1px solid var(--accent);
+  border-radius: 0;
+  background: var(--accent);
+  color: #213943;
+  font-size: 17px;
+  font-weight: 600;
+  box-shadow: none;
+}
+
+#kc-login:hover,.btn-primary:hover {
+  background: var(--text);
+  color: #213943;
+  border-color: var(--text);
+}
+
+#kc-info-wrapper {
+  background: var(--background);
+  color: var(--text);
+  font-size: 17px;
+}
+
+.login-pf-page .login-pf-signup {
+  color: var(--text);
+}
+
+#kc-content-wrapper {
+  color: var(--text);
+}
+
+.alert {
+  border-radius: 0;
+  font-size: 16px;
+}
+
+input:focus-visible,a:focus-visible,button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media(max-width:600px) {
+  .login-pf-page {
+    padding: 28px 16px;
+  }
+
+  .login-pf-page .card-pf {
+    padding: 24px 20px;
+  }
+
+  #kc-header-wrapper {
+    font-size: 25px;
+  }
+
+  h1#kc-page-title {
+    font-size: 23px;
+  }
+}
+
+.login-pf-page .card-pf {
+  margin: 0 auto;
+}
+
+.login-pf-page {
+  font-size: 18px;
+}
+
+.login-pf-page label,.login-pf-page .pf-c-form__label-text {
+  font-size: 17px;
+  color: var(--text);
+}
+
+.login-pf-page .pf-c-button.pf-m-primary {
+  min-height: 44px;
+  border: 1px solid var(--accent);
+  border-radius: 0;
+  background: var(--accent);
+  color: #213943;
+  font-size: 17px;
+  font-weight: 600;
+  box-shadow: none;
+}
+
+.login-pf-page input:not([type=submit]):not([type=checkbox]):not([type=hidden]) {
+  min-height: 46px;
+  font-size: 18px;
+  background: var(--background);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.login-pf-page .form-group {
+  margin-bottom: 20px;
+}
+
+.login-pf-page .pf-c-button.pf-m-primary:hover {
+  background: var(--text);
+  border-color: var(--text);
+}
+
+#kc-header #kc-header-wrapper {
+  color: var(--accent);
+}
